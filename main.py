@@ -1,21 +1,11 @@
-#DONE (5/5 points) Initial comments with your name, class and project at the top of your .py file.
-#(5/5 points) Proper import of packages used.
-#(20/20 points) Using an API of your choice (yfinance works), collect the closing price of 5 of your favorite stock tickers for the last 10 trading days.
-#(10/10 points) Store this information in a list that you will convert to a array in NumPy.
-#(10/10 points) Plot these 5 graphs. Feel free to add as much information to the graphs as you like exploring the documentation for matplotlib. At minimum it just needs to show 10 data points.
-#(10/10 points) Save these graphs in a folder called charts as PNG files. Do not upload these to your project folder, the project should save these when it executes. You may want to add this folder to your .gitignore file.
-#(10/10 points) There should be a minimum of 5 commits on your project, be sure to commit often!
-#(10/10 points) I will be checking out the main branch of your project. Please be sure to include a requirements.txt file which contains all the packages that need installed. You can create this fille with the output of pip freeze at the terminal prompt.
-#(20/20 points) There should be a README.md file in your project that explains what your project is, how to install the pip requirements, and how to execute the program. Please use the GitHub flavor of Markdown.
-
-
-
 ### INF601 - Advanced Programming in Python
 #### Davon Morris
 #### Mini Project 1
 
-import pprint as pprint
+import numpy as np
 import yfinance as yf
+import matplotlib.pyplot as plt
+import os
 
 mytickers = ["MSFT", "AAPL", "NVDA", "GOOG", "OTGLF"]
 mytickers.sort()
@@ -28,15 +18,43 @@ for ticker in mytickers:
                       'history': (result.history(period = "1mo"))[-10:],
                       'name': result.info['longName'],
                       }
-closing = {}
-for ticker in mytickers:
-    closing[ticker] = { 'Ticker': ticker,
-                        'Closing': mydata[ticker]['history']['Close']
-    }
-    #print(f"{ticker}: \n{(mydata[ticker]['history'])[['Open', 'High', 'Low', 'Close', 'Volume']]}")
-    print(f"Name: {(mydata[ticker]['name'])}\n"
-          f"Ticker: {ticker} \n"
-          f"{(mydata[ticker]['history'])[['Close']]}\n"
-          f"{'-'* 100}")
-          #f"{(mydata[ticker]['history'])[['Open', 'High', 'Low', 'Close', 'Volume']]}")
+closing_list = [
+    [mydata[ticker]['name'], ticker, mydata[ticker]['history']['Close']]
+    for ticker in mytickers
+]
+
+# Convert the list to a numpy array
+closing_array = np.array(closing_list, dtype=object)
+
+plt.figure(figsize=(10, 6))
+
+# Making charts directory if it doesn't exist
+if not os.path.exists("charts/"):
+    os.mkdir("charts/")
+
+
+# Plotting the closing prices for each company in a separate graph
+for i in range(len(closing_array)):
+    name = closing_array[i][0] # Company Name
+    ticker = closing_array[i][1] # Ticker Symbol
+    closing_prices = closing_array[i][2] # Closing prices
+
+    # Plot the closing prices
+    plt.plot(closing_prices.index,closing_prices.values,label=name)
+
+    # Labels and title for graph
+    plt.xlabel("Date") # x-axis
+    plt.ylabel("Closing Price (US $)") #y-axis
+    plt.title("Closing Prices of Selected Stocks (Last 10 Days)") #Title for graph
+    #plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+
+    # Save the individual plot for the current company
+    try:
+        plt.savefig(f"charts/{name}_plot.png")
+        print(f"{name}_plot.png was created and has been saved to the 'charts' folder.")
+    except:
+        print(f"{name}_plot.png failed to be created and/or was unable to be saved to the charts folder")
+
 

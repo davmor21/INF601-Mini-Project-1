@@ -42,3 +42,7 @@ Davon Morris
 
 ## Acknowledgments
 [How to get last items in list](https://stackoverflow.com/questions/646644/how-to-get-last-items-of-a-list-in-python)
+
+[ChatGPT check how to convert my dictionary to an array using NumPy](https://chatgpt.com/share/66e75c40-3e8c-800f-a53a-26284b14178a)
+
+[Pyplot Tutorial](https://matplotlib.org/stable/tutorials/pyplot.html)
