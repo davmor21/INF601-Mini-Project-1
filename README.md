@@ -41,3 +41,4 @@ command to run if program contains helper info
 Davon Morris
 
 ## Acknowledgments
+[How to get last items in list](https://stackoverflow.com/questions/646644/how-to-get-last-items-of-a-list-in-python)

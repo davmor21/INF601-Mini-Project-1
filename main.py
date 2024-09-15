@@ -13,19 +13,30 @@
 ### INF601 - Advanced Programming in Python
 #### Davon Morris
 #### Mini Project 1
-import pprint
+
+import pprint as pprint
 import yfinance as yf
 
-mytickers = ["MSFT", "AAPL", "NVDA", "GME", "AMC"]
+mytickers = ["MSFT", "AAPL", "NVDA", "GOOG", "OTGLF"]
 mytickers.sort()
 
 mydata = {}
-
-
 for ticker in mytickers:
     result = yf.Ticker(ticker)
     mydata[ticker] = {'ticker': ticker,
-                      'dailyHigh': result.info['dayHigh']
+                      'dailyHigh': result.info['dayHigh'],
+                      'history': (result.history(period = "1mo"))[-10:],
+                      'name': result.info['longName'],
                       }
+closing = {}
+for ticker in mytickers:
+    closing[ticker] = { 'Ticker': ticker,
+                        'Closing': mydata[ticker]['history']['Close']
+    }
+    #print(f"{ticker}: \n{(mydata[ticker]['history'])[['Open', 'High', 'Low', 'Close', 'Volume']]}")
+    print(f"Name: {(mydata[ticker]['name'])}\n"
+          f"Ticker: {ticker} \n"
+          f"{(mydata[ticker]['history'])[['Close']]}\n"
+          f"{'-'* 100}")
+          #f"{(mydata[ticker]['history'])[['Open', 'High', 'Low', 'Close', 'Volume']]}")
 
-pprint.pprint(mydata)
