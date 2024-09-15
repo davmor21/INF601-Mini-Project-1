@@ -18,23 +18,15 @@ pip install -r requirements.txt
 ```
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Clone my repository to your IDE configured to run Python 3.12
+* Optional - Create directory named "charts", if not created the script will do it for you
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+* Create an interpreter for this project
+* pip install -r requirements.txt
+* Choose your tickers by placing them in the "myTickers" list on line 10 or use the pre-populated ones
+* Press play and open the images created in the "charts" directory
 
 ## Authors
 
@@ -46,3 +38,7 @@ Davon Morris
 [ChatGPT check how to convert my dictionary to an array using NumPy](https://chatgpt.com/share/66e75c40-3e8c-800f-a53a-26284b14178a)
 
 [Pyplot Tutorial](https://matplotlib.org/stable/tutorials/pyplot.html)
+
+[Try Except](https://www.w3schools.com/python/python_try_except.asp)
+
+[Create New Folder with import os](https://stackoverflow.com/questions/1274405/how-to-create-new-folder)

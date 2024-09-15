@@ -5,7 +5,7 @@
 import numpy as np
 import yfinance as yf
 import matplotlib.pyplot as plt
-import os
+import os # For directory creation if needed
 
 mytickers = ["MSFT", "AAPL", "NVDA", "GOOG", "OTGLF"]
 mytickers.sort()
