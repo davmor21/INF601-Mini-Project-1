@@ -42,3 +42,5 @@ Davon Morris
 [Try Except](https://www.w3schools.com/python/python_try_except.asp)
 
 [Create New Folder with import os](https://stackoverflow.com/questions/1274405/how-to-create-new-folder)
+
+[Markdown Preview Plugin for PyCharm](https://plugins.jetbrains.com/plugin/17254-markdown-editor)
